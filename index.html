@@ -34,11 +34,10 @@ body {
 .subtitle {
     font-size: 17px;
     color: #d1d5db;
-    line-height: 1.8;
 }
 
 .container {
-    max-width: 850px;
+    max-width: 900px;
     margin: 30px auto;
     padding: 0 16px;
 }
@@ -56,27 +55,37 @@ body {
     font-size: 22px;
 }
 
-select,
+label {
+    display: block;
+    font-weight: bold;
+    margin: 15px 0 8px;
+}
+
+select {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    background: white;
+}
+
 textarea {
     width: 100%;
+    min-height: 160px;
+    resize: vertical;
     border: 2px solid #e5e7eb;
     border-radius: 14px;
     padding: 15px;
     font-size: 16px;
     font-family: inherit;
     outline: none;
-    background: white;
 }
 
-select:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
     border-color: #2563eb;
-}
-
-textarea {
-    min-height: 150px;
-    resize: vertical;
-    margin-top: 10px;
 }
 
 button {
@@ -136,9 +145,12 @@ button:hover {
     color: #166534;
 }
 
-.score {
-    font-weight: bold;
-    color: #2563eb;
+.symptoms-box {
+    background: #eff6ff;
+    border-right: 4px solid #2563eb;
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin: 12px 0;
 }
 
 .warning {
@@ -147,22 +159,13 @@ button:hover {
     padding: 15px;
     border-radius: 10px;
     margin-top: 15px;
-    line-height: 1.8;
 }
 
 .info {
-    background: #eff6ff;
-    border-right: 5px solid #2563eb;
+    background: #f0fdf4;
+    border-right: 5px solid #16a34a;
     padding: 15px;
     border-radius: 10px;
-    margin-top: 15px;
-    line-height: 1.8;
-}
-
-.question {
-    background: #f8fafc;
-    padding: 15px;
-    border-radius: 12px;
     margin-top: 15px;
 }
 
@@ -173,14 +176,12 @@ button:hover {
     font-size: 14px;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 8px;
+ul {
+    line-height: 2;
 }
 
-.hidden {
-    display: none;
+small {
+    color: #6b7280;
 }
 </style>
 </head>
@@ -188,67 +189,121 @@ label {
 <body>
 
 <header class="header">
+
     <div class="logo">🔧 ميكانيكي</div>
 
     <div class="subtitle">
-        مساعد ذكي لتحليل أعراض الأعطال في المركبات والمعدات والمحركات
+        مساعد ذكي لفهم أعراض أعطال المركبات والمعدات
     </div>
+
 </header>
 
 <main class="container">
 
     <section class="card">
 
-        <h2>ابدأ التشخيص</h2>
+        <h2>🔍 تشخيص العطل</h2>
 
-        <label for="machineType">
+        <p>
+            اكتب أعراض العطل بالتفصيل، وسيحلل النظام الأعراض
+            المترابطة ويعرض الأسباب المحتملة والفحوصات المقترحة.
+        </p>
+
+        <label for="vehicleType">
             نوع المركبة أو المعدة
         </label>
 
-        <select id="machineType">
-            <option value="all">لا أعرف / اختر لاحقًا</option>
-            <option value="car">سيارة</option>
-            <option value="truck">شاحنة</option>
-            <option value="bus">حافلة</option>
-            <option value="motorcycle">دراجة نارية</option>
-            <option value="heavy">معدات ثقيلة</option>
-            <option value="marine">قارب / محرك بحري</option>
-            <option value="generator">مولد كهربائي</option>
-            <option value="agriculture">معدات زراعية</option>
-            <option value="engine">محرك / معدة أخرى</option>
-        </select>
+        <select id="vehicleType">
 
-        <br><br>
+            <option value="car">
+                🚗 سيارة
+            </option>
+
+            <option value="truck">
+                🚚 شاحنة
+            </option>
+
+            <option value="bus">
+                🚌 حافلة
+            </option>
+
+            <option value="motorcycle">
+                🏍️ دراجة نارية
+            </option>
+
+            <option value="boat">
+                🚤 قارب / مركبة بحرية
+            </option>
+
+            <option value="heavy">
+                🚜 معدة ثقيلة
+            </option>
+
+            <option value="generator">
+                ⚡ مولد كهربائي
+            </option>
+
+            <option value="other">
+                🔧 مركبة أو معدة أخرى
+            </option>
+
+        </select>
 
         <label for="systemType">
             النظام أو الجزء المتأثر
         </label>
 
         <select id="systemType">
-            <option value="all">لا أعرف</option>
-            <option value="engine">المحرك</option>
-            <option value="fuel">الوقود</option>
-            <option value="cooling">التبريد</option>
-            <option value="electrical">الكهرباء والتشغيل</option>
-            <option value="transmission">القير / ناقل الحركة</option>
-            <option value="brakes">الفرامل</option>
-            <option value="hydraulic">الهيدروليك</option>
-            <option value="ac">التكييف</option>
-            <option value="exhaust">العادم</option>
-            <option value="suspension">التعليق والتوجيه</option>
-            <option value="other">غير متأكد</option>
+
+            <option value="engine">
+                المحرك
+            </option>
+
+            <option value="fuel">
+                الوقود
+            </option>
+
+            <option value="electrical">
+                الكهرباء والتشغيل
+            </option>
+
+            <option value="cooling">
+                التبريد
+            </option>
+
+            <option value="transmission">
+                ناقل الحركة
+            </option>
+
+            <option value="brakes">
+                الفرامل
+            </option>
+
+            <option value="ac">
+                التكييف
+            </option>
+
+            <option value="hydraulic">
+                الهيدروليك
+            </option>
+
+            <option value="exhaust">
+                العادم
+            </option>
+
+            <option value="unknown">
+                لا أعرف
+            </option>
+
         </select>
 
-        <br><br>
-
         <label for="symptoms">
-            صف الأعراض
+            أعراض العطل
         </label>
 
         <textarea
             id="symptoms"
-            placeholder="مثال:
-المحرك يشتغل بصعوبة صباحًا، وبعد التشغيل يهتز ويضعف العزم ويصدر دخانًا أبيض..."
+            placeholder="مثال: السيارة تهتز عند الوقوف، وتقطع عند الدعس، والعزم ضعيف..."
         ></textarea>
 
         <button onclick="diagnose()">
@@ -257,18 +312,25 @@ label {
 
     </section>
 
+
     <section class="card result" id="result">
 
         <h2>نتيجة التحليل</h2>
 
+        <div id="analysisSummary"></div>
+
         <div id="diagnoses"></div>
 
-        <div id="questions"></div>
-
         <div class="warning">
+
             ⚠️ <strong>تنبيه:</strong>
-            النتائج احتمالات مبنية على الأعراض المدخلة وليست تشخيصًا نهائيًا.
-            يجب إجراء الفحص الفعلي واتباع إجراءات السلامة المناسبة قبل الإصلاح.
+
+            هذه النتائج احتمالات مبنية على الأعراض المدخلة
+            وليست تشخيصًا نهائيًا.
+
+            يجب إجراء الفحص الفعلي واتباع إجراءات السلامة
+            المناسبة قبل الإصلاح.
+
         </div>
 
     </section>
@@ -276,912 +338,598 @@ label {
 </main>
 
 <footer class="footer">
-    ميكانيكي — تشخيص أعطال المركبات والمعدات والمحركات
+
+    ميكانيكي — مساعد ذكي لفهم أعطال المركبات والمعدات
+
 </footer>
+
 
 <script>
 
-/*
-==================================================
-قاعدة المعرفة
-كل عطل يحتوي على:
-- نوع المعدة
-- النظام
-- أعراض قوية
-- أعراض مساعدة
-- أعراض متعارضة
-- مستوى الخطورة
-- الفحوصات المقترحة
-==================================================
-*/
-
-const faultDatabase = [
-
-    {
-        name: "خلل في نظام الإشعال أو البواجي",
-        types: ["car", "truck", "bus", "engine"],
-        systems: ["engine"],
-
-        strong: [
-            "تقطيع",
-            "تفتفة",
-            "رجة المحرك",
-            "اهتزاز المحرك",
-            "المحرك يقطع",
-            "المحرك يهتز",
-            "ضعف العزم"
-        ],
-
-        supporting: [
-            "صعوبة التشغيل",
-            "استهلاك الوقود",
-            "صرفية عالية",
-            "لمبة المكينة",
-            "تردد"
-        ],
-
-        against: [
-            "دخان أبيض مستمر",
-            "ارتفاع حرارة شديد"
-        ],
-
-        danger: "متوسطة",
-
-        advice:
-            "افحص البواجي والكويلات وأسلاك الإشعال ونظام التحكم بالمحرك، ثم افحص ضغط الأسطوانات إذا استمر الخلل."
-    },
-
-    {
-        name: "ضعف البطارية أو نظام الشحن",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "motorcycle",
-            "generator",
-            "agriculture",
-            "heavy",
-            "engine"
-        ],
-
-        systems: ["electrical"],
-
-        strong: [
-            "لا يشتغل",
-            "ما يشتغل",
-            "صعوبة التشغيل",
-            "تشغيل ضعيف",
-            "تأخير التشغيل",
-            "البطارية ضعيفة",
-            "البطارية تفضى",
-            "لا يوجد تشغيل"
-        ],
-
-        supporting: [
-            "إضاءة ضعيفة",
-            "لمبات ضعيفة",
-            "الدينمو",
-            "ضعف الكهرباء",
-            "يفصل"
-        ],
-
-        against: [],
-
-        danger: "متوسطة",
-
-        advice:
-            "افحص جهد البطارية، أقطاب البطارية، الكابلات، ونظام الشحن والدينمو."
-    },
-
-    {
-        name: "خلل في نظام الوقود",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "heavy",
-            "generator",
-            "agriculture",
-            "marine",
-            "engine"
-        ],
-
-        systems: ["fuel", "engine"],
-
-        strong: [
-            "ضعف العزم",
-            "تقطيع",
-            "اختناق",
-            "تفتفة",
-            "المحرك يختنق",
-            "لا يستجيب للبنزين",
-            "ضعف السحب"
-        ],
-
-        supporting: [
-            "صعوبة التشغيل",
-            "استهلاك الوقود",
-            "صرفية عالية",
-            "دخان أسود",
-            "توقف المحرك"
-        ],
-
-        against: [],
-
-        danger: "متوسطة",
-
-        advice:
-            "افحص ضغط الوقود، الفلتر، المضخة، البخاخات ونظام التحكم بالوقود."
-    },
-
-    {
-        name: "مشكلة في نظام التبريد",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "heavy",
-            "generator",
-            "agriculture",
-            "marine",
-            "engine"
-        ],
-
-        systems: ["cooling", "engine"],
-
-        strong: [
-            "ترتفع الحرارة",
-            "ارتفاع الحرارة",
-            "حرارة عالية",
-            "المحرك حار",
-            "سخونة المحرك",
-            "يفور الماء",
-            "يفور الرديتر"
-        ],
-
-        supporting: [
-            "نقص الماء",
-            "نقص سائل التبريد",
-            "المروحة لا تعمل",
-            "تسريب ماء",
-            "رائحة ماء"
-        ],
-
-        against: [],
-
-        danger: "عالية",
-
-        advice:
-            "افحص مستوى سائل التبريد، التسريبات، الرديتر، المروحة، الثرموستات ومضخة الماء. لا تواصل تشغيل محرك ترتفع حرارته."
-    },
-
-    {
-        name: "تسرب أو فقدان سائل التبريد",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "heavy",
-            "generator",
-            "agriculture",
-            "marine",
-            "engine"
-        ],
-
-        systems: ["cooling"],
-
-        strong: [
-            "نقص الماء",
-            "الماء ينقص",
-            "ماء الرديتر ينقص",
-            "نقص سائل التبريد",
-            "تسريب ماء",
-            "تهريب ماء"
-        ],
-
-        supporting: [
-            "ارتفاع الحرارة",
-            "دخان أبيض",
-            "رائحة سائل التبريد",
-            "بقعة ماء"
-        ],
-
-        against: [],
-
-        danger: "عالية",
-
-        advice:
-            "افحص نظام التبريد بالكامل واختبار ضغط النظام وتحديد مصدر التسريب."
-    },
-
-    {
-        name: "احتمال تلف جوان رأس المحرك",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "heavy",
-            "generator",
-            "agriculture",
-            "engine"
-        ],
-
-        systems: ["engine", "cooling"],
-
-        strong: [
-            "دخان أبيض",
-            "دخان أبيض مستمر",
-            "الماء ينقص بدون تهريب",
-            "نقص الماء بدون تهريب",
-            "ارتفاع الحرارة مع نقص الماء"
-        ],
-
-        supporting: [
-            "صعوبة التشغيل",
-            "اهتزاز المحرك",
-            "ضغط في الرديتر",
-            "اختلاط الزيت بالماء",
-            "لون الزيت حليبي"
-        ],
-
-        against: [],
-
-        danger: "عالية",
-
-        advice:
-            "يحتاج إلى اختبار غازات الاحتراق في نظام التبريد، وفحص ضغط الأسطوانات أو اختبار التسريب حسب الحالة."
-    },
-
-    {
-        name: "خلل في نظام الفرامل",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "motorcycle",
-            "heavy"
-        ],
-
-        systems: ["brakes"],
-
-        strong: [
-            "ضعف الفرامل",
-            "الفرامل ضعيفة",
-            "صوت الفرامل",
-            "صوت عند الفرملة",
-            "اهتزاز عند الفرملة",
-            "السيارة تسحب عند الفرملة"
-        ],
-
-        supporting: [
-            "رائحة احتراق",
-            "دواسة الفرامل",
-            "الدواسة طرية",
-            "تسريب زيت الفرامل"
-        ],
-
-        against: [],
-
-        danger: "عالية",
-
-        advice:
-            "افحص نظام الفرامل كاملًا، بما في ذلك الفحمات والأقراص والزيت والخراطيم وأجزاء التحكم."
-    },
-
-    {
-        name: "خلل في ناقل الحركة",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "heavy",
-            "agriculture"
-        ],
-
-        systems: ["transmission"],
-
-        strong: [
-            "القير ينتفض",
-            "القير يضرب",
-            "القير يتأخر",
-            "تأخير القير",
-            "انزلاق القير",
-            "القير لا يبدل",
-            "صعوبة تبديل القير"
-        ],
-
-        supporting: [
-            "نتعة",
-            "رجة عند التبديل",
-            "صوت القير",
-            "تهريب زيت القير",
-            "رائحة زيت"
-        ],
-
-        against: [],
-
-        danger: "متوسطة",
-
-        advice:
-            "افحص مستوى وحالة زيت ناقل الحركة، التسريبات، الأكواد الإلكترونية وضغط النظام حسب نوع ناقل الحركة."
-    },
-
-    {
-        name: "خلل في النظام الهيدروليكي",
-        types: [
-            "heavy",
-            "agriculture",
-            "engine"
-        ],
-
-        systems: ["hydraulic"],
-
-        strong: [
-            "الهيدروليك ضعيف",
-            "ضعف الهيدروليك",
-            "الهيدروليك بطيء",
-            "الحركة بطيئة",
-            "الذراع بطيء",
-            "المعدة لا ترفع",
-            "الرفع ضعيف"
-        ],
-
-        supporting: [
-            "تهريب زيت",
-            "صوت المضخة",
-            "حرارة الزيت",
-            "زيت هيدروليك",
-            "المضخة تصدر صوت"
-        ],
-
-        against: [],
-
-        danger: "متوسطة",
-
-        advice:
-            "افحص مستوى زيت الهيدروليك، الفلاتر، التسريبات، المضخة، الضغط والصمامات."
-    },
-
-    {
-        name: "خلل في نظام العادم أو احتراق غير سليم",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "heavy",
-            "generator",
-            "agriculture",
-            "marine",
-            "engine"
-        ],
-
-        systems: ["exhaust", "engine"],
-
-        strong: [
-            "دخان أسود",
-            "دخان أزرق",
-            "دخان أبيض",
-            "دخان من العادم",
-            "الدخان كثيف"
-        ],
-
-        supporting: [
-            "ضعف العزم",
-            "استهلاك الوقود",
-            "رائحة وقود",
-            "صرفية عالية"
-        ],
-
-        against: [],
-
-        danger: "متوسطة",
-
-        advice:
-            "حدد لون الدخان ووقت ظهوره، ثم افحص نظام الوقود والهواء والزيت والعادم حسب نوع المحرك."
-    },
-
-    {
-        name: "خلل في نظام التكييف",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "heavy",
-            "agriculture"
-        ],
-
-        systems: ["ac"],
-
-        strong: [
-            "المكيف لا يبرد",
-            "المكيف حار",
-            "الهواء حار",
-            "ضعف التبريد",
-            "التكييف لا يبرد"
-        ],
-
-        supporting: [
-            "صوت الكمبروسر",
-            "الكمبروسر",
-            "المروحة",
-            "غاز المكيف",
-            "تسريب فريون"
-        ],
-
-        against: [],
-
-        danger: "منخفضة",
-
-        advice:
-            "افحص ضغط دائرة التكييف، التسريبات، الضاغط، المراوح والحساسات."
-    },
-
-    {
-        name: "خلل في التوجيه أو التعليق",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "heavy"
-        ],
-
-        systems: ["suspension"],
-
-        strong: [
-            "السيارة تسحب",
-            "المقود يهتز",
-            "الدركسون يهتز",
-            "اهتزاز المقود",
-            "صوت في التعليق",
-            "طقطقة"
-        ],
-
-        supporting: [
-            "تآكل الإطارات",
-            "السيارة غير ثابتة",
-            "ميلان السيارة",
-            "صوت عند المطبات"
-        ],
-
-        against: [],
-
-        danger: "متوسطة",
-
-        advice:
-            "افحص الإطارات، الأذرعة، المقصات، المساعدات، المفاصل وأجزاء التوجيه."
-    },
-
-    {
-        name: "خلل محتمل في مضخة الوقود",
-        types: [
-            "car",
-            "truck",
-            "bus",
-            "generator",
-            "agriculture",
-            "marine",
-            "engine"
-        ],
-
-        systems: ["fuel"],
-
-        strong: [
-            "المحرك يطفى",
-            "المحرك يتوقف",
-            "توقف أثناء القيادة",
-            "ضعف السحب",
-            "صعوبة التشغيل"
-        ],
-
-        supporting: [
-            "تقطيع",
-            "ضعف العزم",
-            "صوت المضخة"
-        ],
-
-        against: [],
-
-        danger: "متوسطة",
-
-        advice:
-            "افحص ضغط الوقود وتغذية المضخة والفلتر قبل استبدال المضخة."
-    }
-
-];
-
-
-/*
-==================================================
-قاموس تطبيع اللغة
-يساعد النظام على فهم صيغ مختلفة لنفس العرض.
-==================================================
-*/
-
-const symptomGroups = {
-
-    vibration: [
-        "يهتز",
-        "اهتزاز",
-        "رجة",
-        "يرج",
-        "ترج",
-        "تفتفة",
-        "تقطيع"
-    ],
-
-    overheating: [
-        "حرارة",
-        "حراره",
-        "يسخن",
-        "سخونة",
-        "سخونه",
-        "ترتفع الحرارة",
-        "ارتفاع الحرارة",
-        "يفور"
-    ],
-
-    weakPower: [
-        "ضعف العزم",
-        "ضعف السحب",
-        "ضعف القوة",
-        "ما يسحب",
-        "لا يسحب",
-        "ضعيف",
-        "ضعف الأداء"
-    ],
-
-    hardStart: [
-        "صعوبة التشغيل",
-        "صعب التشغيل",
-        "ما يشتغل",
-        "لا يشتغل",
-        "يتأخر في التشغيل",
-        "تشغيل ضعيف"
-    ],
-
-    whiteSmoke: [
-        "دخان أبيض",
-        "دخان ابيض"
-    ],
-
-    blackSmoke: [
-        "دخان أسود",
-        "دخان اسود"
-    ],
-
-    blueSmoke: [
-        "دخان أزرق",
-        "دخان ازرق"
-    ],
-
-    coolantLoss: [
-        "نقص الماء",
-        "الماء ينقص",
-        "نقص سائل التبريد",
-        "ماء الرديتر ينقص",
-        "تهريب ماء",
-        "تسريب ماء"
-    ],
-
-    brakeProblem: [
-        "ضعف الفرامل",
-        "الفرامل ضعيفة",
-        "صوت الفرامل",
-        "اهتزاز عند الفرملة",
-        "السيارة تسحب عند الفرملة"
-    ],
-
-    hydraulicWeak: [
-        "الهيدروليك ضعيف",
-        "ضعف الهيدروليك",
-        "الهيدروليك بطيء",
-        "المعدة لا ترفع",
-        "الرفع ضعيف"
-    ],
-
-    transmission: [
-        "القير",
-        "ناقل الحركة",
-        "ينتفض",
-        "يضرب",
-        "لا يبدل",
-        "يتأخر"
-    ],
-
-    acProblem: [
-        "المكيف",
-        "التكييف",
-        "لا يبرد",
-        "ما يبرد",
-        "الهواء حار"
-    ],
-
-    fuelProblem: [
-        "صرفية",
-        "استهلاك الوقود",
-        "استهلاك البنزين",
-        "استهلاك الديزل",
-        "اختناق",
-        "رائحة وقود"
-    ],
-
-    electrical: [
-        "البطارية",
-        "الكهرباء",
-        "الدينمو",
-        "إضاءة ضعيفة",
-        "لمبات ضعيفة",
-        "ما فيه كهرباء"
-    ]
-};
-
-
-/*
-==================================================
-تحويل النص إلى أعراض مفهومة
-==================================================
-*/
+/* =========================================================
+   تنظيف النص
+========================================================= */
 
 function normalizeText(text) {
 
     return text
         .toLowerCase()
-        .replace(/[إأآا]/g, "ا")
+        .replace(/[أإآ]/g, "ا")
         .replace(/ة/g, "ه")
         .replace(/ى/g, "ي")
-        .replace(/[،,؛;]/g, " ")
+        .replace(/[ًٌٍَُِّْـ]/g, "")
+        .replace(/[،,.!?؟]/g, " ")
         .replace(/\s+/g, " ")
         .trim();
+
 }
 
 
-function detectSymptomGroups(text) {
+/* =========================================================
+   مجموعات الأعراض الذكية
+========================================================= */
+
+const symptomGroups = {
+
+    vibration: {
+
+        name: "اهتزاز أو رجة المحرك",
+
+        phrases: [
+            "تهتز عند الوقوف",
+            "يهتز عند الوقوف",
+            "اهتزاز عند الوقوف",
+            "رجة عند الوقوف",
+            "المحرك يهتز",
+            "المحرك يرج",
+            "المحرك فيه رجة",
+            "رجة المحرك",
+            "اهتزاز المحرك",
+            "تفتفة",
+            "تفتفه",
+            "تقطيع المحرك",
+            "المحرك يقطع",
+            "المحرك يقطع عند الوقوف"
+        ]
+
+    },
+
+    weakPower: {
+
+        name: "ضعف العزم أو السحب",
+
+        phrases: [
+            "ضعف العزم",
+            "العزم ضعيف",
+            "ضعف السحب",
+            "السحب ضعيف",
+            "ضعف القوة",
+            "ضعف الاداء",
+            "ضعف الأداء",
+            "السيارة ما تسحب",
+            "السياره ما تسحب",
+            "لا تسحب",
+            "ما يسحب",
+            "المحرك ضعيف",
+            "استجابة المحرك ضعيفة"
+        ]
+
+    },
+
+    hardStart: {
+
+        name: "صعوبة التشغيل",
+
+        phrases: [
+            "صعوبة التشغيل",
+            "صعب التشغيل",
+            "صعوبة في التشغيل",
+            "يتاخر في التشغيل",
+            "يتأخر في التشغيل",
+            "تأخير التشغيل",
+            "ما يشتغل",
+            "لا يشتغل",
+            "السيارة لا تشتغل",
+            "السياره ما تشتغل"
+        ]
+
+    },
+
+    overheating: {
+
+        name: "ارتفاع حرارة المحرك",
+
+        phrases: [
+            "ترتفع الحرارة",
+            "ارتفاع الحرارة",
+            "حرارة عالية",
+            "حرارة مرتفعة",
+            "المحرك يسخن",
+            "المحرك حار",
+            "سخونة المحرك",
+            "السيارة تسخن",
+            "السياره تسخن"
+        ]
+
+    },
+
+    coolantLoss: {
+
+        name: "نقص أو تسريب سائل التبريد",
+
+        phrases: [
+            "نقص الماء",
+            "الماء ينقص",
+            "ماء الرديتر ينقص",
+            "نقص ماء الرديتر",
+            "نقص سائل التبريد",
+            "سائل التبريد ينقص",
+            "تهريب ماء",
+            "تسريب ماء",
+            "تسريب سائل التبريد"
+        ]
+
+    },
+
+    whiteSmoke: {
+
+        name: "دخان أبيض",
+
+        phrases: [
+            "دخان ابيض",
+            "دخان أبيض",
+            "دخان ابيض من الشكمان",
+            "دخان أبيض من الشكمان",
+            "دخان ابيض من العادم",
+            "دخان أبيض من العادم"
+        ]
+
+    },
+
+    blackSmoke: {
+
+        name: "دخان أسود",
+
+        phrases: [
+            "دخان اسود",
+            "دخان أسود",
+            "دخان اسود من الشكمان",
+            "دخان أسود من الشكمان",
+            "دخان اسود من العادم"
+        ]
+
+    },
+
+    blueSmoke: {
+
+        name: "دخان أزرق",
+
+        phrases: [
+            "دخان ازرق",
+            "دخان أزرق",
+            "دخان ازرق من الشكمان",
+            "دخان أزرق من الشكمان"
+        ]
+
+    },
+
+    brake: {
+
+        name: "مشكلة في الفرامل",
+
+        phrases: [
+            "ضعف الفرامل",
+            "الفرامل ضعيفه",
+            "الفرامل ضعيفة",
+            "صوت الفرامل",
+            "صوت عند الفرملة",
+            "اهتزاز عند الفرملة",
+            "السيارة تسحب عند الفرملة",
+            "السياره تسحب عند الفرمله"
+        ]
+
+    },
+
+    transmission: {
+
+        name: "مشكلة في ناقل الحركة",
+
+        phrases: [
+            "القير ينتفض",
+            "القير يضرب",
+            "القير يتأخر",
+            "القير لا يبدل",
+            "القير ما يبدل",
+            "صعوبة تبديل القير",
+            "ناقل الحركة لا يبدل",
+            "ناقل الحركه ما يبدل"
+        ]
+
+    },
+
+    ac: {
+
+        name: "مشكلة في التكييف",
+
+        phrases: [
+            "المكيف لا يبرد",
+            "المكيف ما يبرد",
+            "المكيف حار",
+            "الهواء حار",
+            "ضعف التبريد",
+            "التكييف لا يبرد",
+            "التكييف ما يبرد"
+        ]
+
+    },
+
+    electrical: {
+
+        name: "مشكلة كهربائية",
+
+        phrases: [
+            "البطارية ضعيفة",
+            "البطاريه ضعيفه",
+            "البطارية تفضى",
+            "الكهرباء ضعيفة",
+            "الدينمو ضعيف",
+            "إضاءة ضعيفة",
+            "لمبات ضعيفة",
+            "لا توجد كهرباء",
+            "ما فيه كهرباء"
+        ]
+
+    },
+
+    fuel: {
+
+        name: "مشكلة محتملة في نظام الوقود",
+
+        phrases: [
+            "صرفية عالية",
+            "صرفيه عاليه",
+            "استهلاك الوقود عالي",
+            "استهلاك البنزين عالي",
+            "استهلاك الديزل عالي",
+            "اختناق المحرك",
+            "المحرك يختنق",
+            "رائحة وقود",
+            "ريحة بنزين"
+        ]
+
+    },
+
+    hydraulic: {
+
+        name: "مشكلة محتملة في النظام الهيدروليكي",
+
+        phrases: [
+            "الهيدروليك ضعيف",
+            "ضعف الهيدروليك",
+            "الهيدروليك بطيء",
+            "المعدة لا ترفع",
+            "المعده لا ترفع",
+            "الرفع ضعيف",
+            "الحفارة لا ترفع",
+            "الشيول لا يرفع"
+        ]
+
+    }
+
+};
+
+
+/* =========================================================
+   اكتشاف الأعراض المترابطة
+========================================================= */
+
+function detectSymptoms(text) {
+
+    const cleanText = normalizeText(text);
 
     const detected = [];
 
-    for (const group in symptomGroups) {
+    for (const key in symptomGroups) {
 
-        const phrases = symptomGroups[group];
+        const group = symptomGroups[key];
 
-        for (const phrase of phrases) {
+        for (const phrase of group.phrases) {
 
-            if (text.includes(normalizeText(phrase))) {
-                detected.push(group);
+            const normalizedPhrase =
+                normalizeText(phrase);
+
+            if (cleanText.includes(normalizedPhrase)) {
+
+                detected.push({
+                    key: key,
+                    name: group.name
+                });
+
                 break;
             }
+
         }
+
     }
 
-    return [...new Set(detected)];
+    return detected;
+
 }
 
 
-/*
-==================================================
-حساب درجة العطل
-ليس مجرد بحث عن كلمة.
-كل عطل يحصل على:
-- أعراض قوية
-- أعراض مساعدة
-- توافق النوع
-- توافق النظام
-- خصم للأعراض المتعارضة
-==================================================
-*/
+/* =========================================================
+   قاعدة الأعطال
+========================================================= */
 
-function calculateFaultScore(fault, text, type, system) {
+const faultDatabase = [
 
-    let score = 0;
-    let matchedStrong = [];
-    let matchedSupporting = [];
+    {
+        name: "خلل في نظام الإشعال أو البواجي",
 
-    fault.strong.forEach(symptom => {
+        groups: [
+            "vibration",
+            "weakPower",
+            "hardStart"
+        ],
 
-        const normalized = normalizeText(symptom);
+        danger: "متوسطة",
 
-        if (text.includes(normalized)) {
+        advice:
+        "افحص البواجي والكويلات وأسلاك الإشعال ونظام التحكم بالمحرك، ثم افحص ضغط الأسطوانات إذا استمر الخلل."
 
-            score += 12;
-            matchedStrong.push(symptom);
+    },
+
+    {
+        name: "خلل في نظام الوقود",
+
+        groups: [
+            "weakPower",
+            "hardStart",
+            "fuel",
+            "vibration"
+        ],
+
+        danger: "متوسطة",
+
+        advice:
+        "افحص ضغط الوقود، الفلتر، المضخة، البخاخات ونظام التحكم بالوقود."
+
+    },
+
+    {
+        name: "خلل محتمل في دخول الهواء أو حساساته",
+
+        groups: [
+            "vibration",
+            "weakPower",
+            "hardStart"
+        ],
+
+        danger: "متوسطة",
+
+        advice:
+        "افحص فلتر الهواء، مجرى السحب، حساس الهواء والحساسات المرتبطة بإدارة المحرك."
+
+    },
+
+    {
+        name: "خلل في نظام العادم أو احتراق غير سليم",
+
+        groups: [
+            "weakPower",
+            "blackSmoke",
+            "whiteSmoke",
+            "blueSmoke",
+            "vibration"
+        ],
+
+        danger: "متوسطة",
+
+        advice:
+        "حدد لون الدخان ووقت ظهوره، ثم افحص نظام الوقود والهواء والزيت والعادم حسب نوع المحرك."
+
+    },
+
+    {
+        name: "مشكلة في نظام التبريد",
+
+        groups: [
+            "overheating",
+            "coolantLoss"
+        ],
+
+        danger: "عالية",
+
+        advice:
+        "افحص مستوى سائل التبريد، التسريبات، الرديتر، المروحة، الثرموستات ومضخة الماء. لا تواصل تشغيل محرك ترتفع حرارته."
+
+    },
+
+    {
+        name: "احتمال تلف جوان رأس المحرك",
+
+        groups: [
+            "overheating",
+            "coolantLoss",
+            "whiteSmoke"
+        ],
+
+        danger: "عالية",
+
+        advice:
+        "يحتاج إلى اختبار غازات الاحتراق في نظام التبريد، وفحص ضغط الأسطوانات أو اختبار التسريب حسب الحالة."
+
+    },
+
+    {
+        name: "مشكلة محتملة في نظام الفرامل",
+
+        groups: [
+            "brake"
+        ],
+
+        danger: "عالية",
+
+        advice:
+        "افحص الفحمات، الأقراص، زيت الفرامل ونظام الفرامل كاملًا. إذا كان ضعف الفرامل واضحًا فلا تستخدم المركبة حتى يتم فحصها."
+
+    },
+
+    {
+        name: "مشكلة محتملة في ناقل الحركة",
+
+        groups: [
+            "transmission"
+        ],
+
+        danger: "متوسطة",
+
+        advice:
+        "افحص مستوى وحالة زيت ناقل الحركة، التسريبات، وأكواد الأعطال، ثم افحص النظام حسب نوع ناقل الحركة."
+
+    },
+
+    {
+        name: "مشكلة محتملة في نظام التكييف",
+
+        groups: [
+            "ac"
+        ],
+
+        danger: "منخفضة",
+
+        advice:
+        "افحص غاز التكييف، الضاغط، الفيوزات، المراوح وحساسات نظام التكييف."
+
+    },
+
+    {
+        name: "مشكلة في البطارية أو نظام الشحن",
+
+        groups: [
+            "electrical",
+            "hardStart"
+        ],
+
+        danger: "متوسطة",
+
+        advice:
+        "افحص جهد البطارية، أقطابها، الدينمو ونظام الشحن."
+
+    },
+
+    {
+        name: "مشكلة محتملة في النظام الهيدروليكي",
+
+        groups: [
+            "hydraulic"
+        ],
+
+        danger: "متوسطة",
+
+        advice:
+        "افحص مستوى الزيت الهيدروليكي، الفلاتر، المضخة، الخراطيم، التسريبات وصمامات التحكم."
+
+    }
+
+];
+
+
+/* =========================================================
+   حساب الاحتمال
+========================================================= */
+
+function calculateFaultScore(fault, detected) {
+
+    let matched = 0;
+
+    fault.groups.forEach(group => {
+
+        if (
+            detected.some(
+                symptom => symptom.key === group
+            )
+        ) {
+            matched++;
         }
+
     });
 
-
-    fault.supporting.forEach(symptom => {
-
-        const normalized = normalizeText(symptom);
-
-        if (text.includes(normalized)) {
-
-            score += 5;
-            matchedSupporting.push(symptom);
-        }
-    });
-
-
-    fault.against.forEach(symptom => {
-
-        const normalized = normalizeText(symptom);
-
-        if (text.includes(normalized)) {
-            score -= 8;
-        }
-    });
-
-
-    /*
-    توافق نوع المركبة أو المعدة
-    */
-
-    if (type !== "all") {
-
-        if (fault.types.includes(type)) {
-            score += 15;
-        } else {
-            score -= 4;
-        }
-    }
-
-
-    /*
-    توافق النظام
-    */
-
-    if (system !== "all") {
-
-        if (fault.systems.includes(system)) {
-            score += 18;
-        } else {
-            score -= 3;
-        }
-    }
-
-
-    /*
-    إذا اجتمعت عدة أعراض قوية
-    نرفع الثقة أكثر.
-    */
-
-    if (matchedStrong.length >= 2) {
-        score += 10;
-    }
-
-    if (matchedStrong.length >= 3) {
-        score += 10;
-    }
-
-
-    return {
-        score,
-        matchedStrong,
-        matchedSupporting
-    };
-}
-
-
-/*
-==================================================
-تحويل الدرجة إلى نسبة تقريبية
-==================================================
-*/
-
-function scoreToPercentage(score) {
-
-    if (score <= 0) {
+    if (matched === 0) {
         return 0;
     }
 
+    /*
+       وجود أكثر من عرض مترابط
+       يرفع قوة الاحتمال.
+    */
+
+    let score =
+        (matched / fault.groups.length) * 100;
+
+    if (matched >= 2) {
+        score += 15;
+    }
+
+    if (matched >= 3) {
+        score += 10;
+    }
+
     return Math.min(
-        96,
-        Math.max(
-            20,
-            Math.round(score)
-        )
+        95,
+        Math.round(score)
     );
+
 }
 
 
-/*
-==================================================
-أسئلة المتابعة
-==================================================
-*/
-
-function buildFollowUpQuestions(text, detectedGroups) {
-
-    const questions = [];
-
-    if (
-        detectedGroups.includes("overheating") &&
-        !detectedGroups.includes("coolantLoss")
-    ) {
-        questions.push(
-            "هل ينقص ماء الرديتر أو سائل التبريد باستمرار؟"
-        );
-    }
-
-
-    if (
-        detectedGroups.includes("whiteSmoke")
-    ) {
-        questions.push(
-            "هل يستمر الدخان الأبيض بعد وصول المحرك إلى درجة حرارة التشغيل؟"
-        );
-    }
-
-
-    if (
-        detectedGroups.includes("vibration") &&
-        detectedGroups.includes("weakPower")
-    ) {
-        questions.push(
-            "هل التقطيع والاهتزاز يظهران أثناء الوقوف فقط أم أثناء القيادة أيضًا؟"
-        );
-    }
-
-
-    if (
-        detectedGroups.includes("hardStart")
-    ) {
-        questions.push(
-            "هل صعوبة التشغيل تحدث والمحرك بارد أم بعد أن يسخن؟"
-        );
-    }
-
-
-    if (
-        detectedGroups.includes("blackSmoke") ||
-        detectedGroups.includes("fuelProblem")
-    ) {
-        questions.push(
-            "هل يوجد استهلاك وقود أعلى من المعتاد؟"
-        );
-    }
-
-
-    return questions.slice(0, 3);
-}
-
-
-/*
-==================================================
-التشخيص الرئيسي
-==================================================
-*/
+/* =========================================================
+   التشخيص
+========================================================= */
 
 function diagnose() {
 
-    const rawText =
-        document.getElementById("symptoms").value;
+    const text =
+        document
+        .getElementById("symptoms")
+        .value
+        .trim();
 
-    const text = normalizeText(rawText);
+    const vehicleType =
+        document
+        .getElementById("vehicleType")
+        .value;
 
-    const type =
-        document.getElementById("machineType").value;
-
-    const system =
-        document.getElementById("systemType").value;
+    const systemType =
+        document
+        .getElementById("systemType")
+        .value;
 
     const result =
-        document.getElementById("result");
+        document
+        .getElementById("result");
 
     const diagnoses =
-        document.getElementById("diagnoses");
+        document
+        .getElementById("diagnoses");
 
-    const questions =
-        document.getElementById("questions");
+    const summary =
+        document
+        .getElementById("analysisSummary");
 
 
     if (!text) {
 
-        alert("اكتب أعراض المركبة أو المعدة أولًا.");
+        alert(
+            "اكتب أعراض العطل أولًا."
+        );
 
         return;
     }
 
 
-    const detectedGroups =
-        detectSymptomGroups(text);
+    const detected =
+        detectSymptoms(text);
 
 
     let results = [];
@@ -1189,236 +937,345 @@ function diagnose() {
 
     faultDatabase.forEach(fault => {
 
-        const analysis =
+        let score =
             calculateFaultScore(
                 fault,
-                text,
-                type,
-                system
+                detected
             );
 
 
-        if (analysis.score > 0) {
+        /*
+           توافق النظام المختار
+        */
+
+        if (
+            systemType === "cooling" &&
+            (
+                fault.name.includes("التبريد") ||
+                fault.name.includes("جوان")
+            )
+        ) {
+            score += 12;
+        }
+
+
+        if (
+            systemType === "brakes" &&
+            fault.name.includes("الفرامل")
+        ) {
+            score += 15;
+        }
+
+
+        if (
+            systemType === "transmission" &&
+            fault.name.includes("ناقل")
+        ) {
+            score += 15;
+        }
+
+
+        if (
+            systemType === "hydraulic" &&
+            fault.name.includes("الهيدروليكي")
+        ) {
+            score += 15;
+        }
+
+
+        if (score > 0) {
 
             results.push({
 
                 ...fault,
 
-                score: analysis.score,
-
-                matchedStrong:
-                    analysis.matchedStrong,
-
-                matchedSupporting:
-                    analysis.matchedSupporting,
-
-                percentage:
-                    scoreToPercentage(
-                        analysis.score
+                score:
+                    Math.min(
+                        95,
+                        Math.round(score)
                     )
+
             });
+
         }
 
     });
 
 
+    /*
+       ترتيب النتائج
+    */
+
     results.sort(
-        (a, b) => b.score - a.score
+        (a, b) =>
+        b.score - a.score
     );
 
 
     diagnoses.innerHTML = "";
-    questions.innerHTML = "";
 
 
     /*
-    ==============================================
-    عرض النتائج
-    ==============================================
+       ملخص الأعراض التي فهمها النظام
+    */
+
+    if (detected.length > 0) {
+
+        summary.innerHTML = `
+
+            <div class="info">
+
+                🧠 <strong>الأعراض التي فهمها النظام:</strong>
+
+                <div class="symptoms-box">
+
+                    ${detected
+                        .map(
+                            symptom =>
+                            "• " + symptom.name
+                        )
+                        .join("<br>")}
+
+                </div>
+
+                تم تحليل الأعراض كأعراض مترابطة
+                وليس اعتمادًا على كلمة واحدة فقط.
+
+            </div>
+
+        `;
+
+    } else {
+
+        summary.innerHTML = `
+
+            <div class="diagnosis">
+
+                <h3>
+                    لم يتم التعرف على أعراض واضحة.
+                </h3>
+
+                <p>
+                    حاول وصف المشكلة بالتفصيل:
+                    متى تظهر؟ هل توجد رجة؟
+                    هل يوجد ضعف عزم؟
+                    هل توجد أصوات أو روائح أو دخان؟
+                    وهل ترتفع الحرارة؟
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /*
+       إذا لم توجد نتائج
     */
 
     if (results.length === 0) {
 
         diagnoses.innerHTML = `
+
             <div class="diagnosis">
 
                 <h3>
-                    لم تتضح المشكلة بما يكفي.
+                    لم نتمكن من تحديد سبب محتمل بعد.
                 </h3>
 
                 <p>
-                    نحتاج إلى أعراض أكثر حتى نستطيع ترتيب
-                    الأسباب المحتملة بشكل أفضل.
-                </p>
-
-                <p>
-                    حاول وصف:
-                    متى تظهر المشكلة،
-                    هل المحرك بارد أم ساخن،
-                    الأصوات،
-                    الدخان،
-                    الروائح،
-                    الحرارة،
-                    ضعف القوة،
-                    أو أي تغير غير طبيعي.
+                    نحتاج إلى أعراض إضافية حتى يصبح التحليل أكثر دقة.
                 </p>
 
             </div>
+
         `;
 
     } else {
 
+
+        /*
+           نعرض أفضل 5 احتمالات
+        */
+
         results
             .slice(0, 5)
-            .forEach((fault, index) => {
+            .forEach(
+                (fault, index) => {
 
-                let dangerClass = "low";
-
-                if (fault.danger === "عالية") {
-                    dangerClass = "high";
-                }
-
-                if (fault.danger === "متوسطة") {
-                    dangerClass = "medium";
-                }
+                    let dangerClass =
+                        "low";
 
 
-                let evidence = "";
+                    if (
+                        fault.danger === "عالية"
+                    ) {
+
+                        dangerClass =
+                            "high";
+
+                    } else if (
+                        fault.danger === "متوسطة"
+                    ) {
+
+                        dangerClass =
+                            "medium";
+
+                    }
 
 
-                if (
-                    fault.matchedStrong.length > 0
-                ) {
+                    const supportingSymptoms =
+                        fault.groups
+                        .filter(
+                            group =>
+                            detected.some(
+                                symptom =>
+                                symptom.key === group
+                            )
+                        )
+                        .map(
+                            group =>
+                            symptomGroups[group].name
+                        );
 
-                    evidence += `
-                        <p>
-                            <strong>الأعراض التي تدعم الاحتمال:</strong>
-                            ${fault.matchedStrong.join("، ")}
-                        </p>
+
+                    diagnoses.innerHTML += `
+
+                        <div class="diagnosis">
+
+                            <span class="badge ${dangerClass}">
+
+                                الخطورة:
+                                ${fault.danger}
+
+                            </span>
+
+                            <h3>
+
+                                ${index + 1}.
+                                ${fault.name}
+
+                            </h3>
+
+                            <p>
+
+                                <strong>
+                                    قوة الاحتمال التقريبية:
+                                </strong>
+
+                                ${fault.score}%
+
+                            </p>
+
+
+                            ${
+                                supportingSymptoms.length
+                                ?
+                                `
+                                <div class="symptoms-box">
+
+                                    <strong>
+                                        الأعراض التي تدعم الاحتمال:
+                                    </strong>
+
+                                    <br>
+
+                                    ${supportingSymptoms.join("، ")}
+
+                                </div>
+                                `
+                                :
+                                ""
+                            }
+
+
+                            <p>
+
+                                <strong>
+                                    الفحص المقترح:
+                                </strong>
+
+                                ${fault.advice}
+
+                            </p>
+
+                        </div>
+
                     `;
+
                 }
+            );
 
-
-                if (
-                    fault.matchedSupporting.length > 0
-                ) {
-
-                    evidence += `
-                        <p>
-                            <strong>أعراض مساعدة:</strong>
-                            ${fault.matchedSupporting.join("، ")}
-                        </p>
-                    `;
-                }
-
-
-                diagnoses.innerHTML += `
-
-                    <div class="diagnosis">
-
-                        <span class="badge ${dangerClass}">
-                            الخطورة: ${fault.danger}
-                        </span>
-
-                        <h3>
-                            ${index + 1}.
-                            ${fault.name}
-                        </h3>
-
-                        <p class="score">
-                            قوة الاحتمال التقريبية:
-                            ${fault.percentage}%
-                        </p>
-
-                        ${evidence}
-
-                        <p>
-                            <strong>
-                                الفحص المقترح:
-                            </strong>
-                            ${fault.advice}
-                        </p>
-
-                    </div>
-                `;
-            });
     }
 
 
     /*
-    ==============================================
-    أسئلة المتابعة
-    ==============================================
+       تنبيه خاص عند الحرارة
     */
 
-    const followUps =
-        buildFollowUpQuestions(
-            text,
-            detectedGroups
-        );
-
-
-    if (followUps.length > 0) {
-
-        questions.innerHTML = `
-
-            <div class="question">
-
-                <h3>
-                    🔎 نحتاج معلومات إضافية
-                </h3>
-
-                <p>
-                    إجاباتك على هذه الأسئلة ستساعد
-                    على تضييق الاحتمالات في النسخة القادمة
-                    من محرك التشخيص.
-                </p>
-
-                <ul>
-                    ${followUps.map(
-                        q => `<li>${q}</li>`
-                    ).join("")}
-                </ul>
-
-            </div>
-        `;
-    }
-
-
-    /*
-    ==============================================
-    ملخص التحليل
-    ==============================================
-    */
-
-    if (detectedGroups.length > 0) {
+    if (
+        detected.some(
+            symptom =>
+            symptom.key === "overheating"
+        )
+    ) {
 
         diagnoses.innerHTML += `
 
-            <div class="info">
+            <div class="warning">
 
-                <strong>
-                    🧠 ملخص التحليل:
+                🌡️ <strong>
+                تنبيه مهم:
                 </strong>
 
-                تم تحليل الأعراض كأعراض مترابطة
-                وليس اعتمادًا على كلمة واحدة فقط.
-
-                عدد مجموعات الأعراض المكتشفة:
-                ${detectedGroups.length}
+                إذا كانت حرارة المحرك ترتفع بشكل واضح،
+                أوقف المركبة في مكان آمن وتجنب فتح غطاء
+                نظام التبريد وهو ساخن.
 
             </div>
+
         `;
+
     }
 
 
-    result.style.display = "block";
+    /*
+       إظهار النتائج
+    */
+
+    result.style.display =
+        "block";
 
 
     result.scrollIntoView({
         behavior: "smooth"
     });
+
 }
+
+
+/* =========================================================
+   تشغيل الاختبار تلقائيًا عند الضغط على Enter مع Shift
+========================================================= */
+
+document
+.getElementById("symptoms")
+.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter" &&
+            event.ctrlKey
+        ) {
+
+            diagnose();
+
+        }
+
+    }
+);
 
 </script>
 
